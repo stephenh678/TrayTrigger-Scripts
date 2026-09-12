@@ -1,0 +1,48 @@
+name: Catalog
+
+# Pull requests: validate every manifest and make sure nobody hand-edited the generated files.
+# Main: regenerate catalog.json and the README table from the merged manifests and commit them.
+on:
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - 'tools/**'
+      - 'README.md'
+      - 'catalog.json'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'tools/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate manifests and generated files
+        shell: pwsh
+        run: ./tools/Build-Catalog.ps1 -Check
+
+  build:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Regenerate catalog.json and README table
+        shell: pwsh
+        run: ./tools/Build-Catalog.ps1
+      - name: Commit if changed
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalog.json README.md
+          if git diff --cached --quiet; then echo "Catalog already current."; exit 0; fi
+          git commit -m "Regenerate catalog.json from ${GITHUB_SHA::7}"
+          git push

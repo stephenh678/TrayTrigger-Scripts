@@ -1,0 +1,14 @@
+{
+    "name":  "OBS Replay Buffer",
+    "description":  "Runs OBS in the tray with the replay buffer on while you play, then closes it.",
+    "author":  "stephenh678",
+    "version":  "1.0",
+    "phase":  "both",
+    "needsAdmin":  false,
+    "scriptArguments":  "optional OBS profile name, in double quotes",
+    "dependencies":  "OBS Studio 30 or newer, with the replay buffer set up",
+    "minAppVersion":  "1.4.0",
+    "files":  [
+                  "Example-OBSReplayBuffer.ps1"
+              ]
+}

@@ -1,0 +1,111 @@
+{
+    "schemaVersion":  1,
+    "repository":  "stephenh678/TrayTrigger-Scripts",
+    "scripts":  [
+                    {
+                        "id":  "companion-apps",
+                        "name":  "Companion Apps",
+                        "description":  "Starts the tools a game needs when it launches and closes them when it exits.",
+                        "author":  "stephenh678",
+                        "version":  "1.0",
+                        "phase":  "both",
+                        "needsAdmin":  false,
+                        "needsAdminReason":  null,
+                        "scriptArguments":  "full paths of the programs to start, each in double quotes",
+                        "dependencies":  "the programs you list",
+                        "minAppVersion":  "1.4.0",
+                        "source":  "scripts/companion-apps",
+                        "files":  [
+                                      {
+                                          "path":  "Example-CompanionApps.ps1",
+                                          "sha256":  "ebb96fe7f3a13628dc73550807b6d71040d439abc955d060b72431be9667e839",
+                                          "size":  7844
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "obs-replay-buffer",
+                        "name":  "OBS Replay Buffer",
+                        "description":  "Runs OBS in the tray with the replay buffer on while you play, then closes it.",
+                        "author":  "stephenh678",
+                        "version":  "1.0",
+                        "phase":  "both",
+                        "needsAdmin":  false,
+                        "needsAdminReason":  null,
+                        "scriptArguments":  "optional OBS profile name, in double quotes",
+                        "dependencies":  "OBS Studio 30 or newer, with the replay buffer set up",
+                        "minAppVersion":  "1.4.0",
+                        "source":  "scripts/obs-replay-buffer",
+                        "files":  [
+                                      {
+                                          "path":  "Example-OBSReplayBuffer.ps1",
+                                          "sha256":  "7084b6e137281da188bad3f3b57f63a568162185fbf78b60505989a6c32ec4fa",
+                                          "size":  5597
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "quiet-mode",
+                        "name":  "Quiet Mode",
+                        "description":  "Closes the background apps you name before a game and reopens them after.",
+                        "author":  "stephenh678",
+                        "version":  "1.0",
+                        "phase":  "both",
+                        "needsAdmin":  false,
+                        "needsAdminReason":  null,
+                        "scriptArguments":  "process names to close, separated by spaces",
+                        "dependencies":  "",
+                        "minAppVersion":  "1.4.0",
+                        "source":  "scripts/quiet-mode",
+                        "files":  [
+                                      {
+                                          "path":  "Example-QuietMode.ps1",
+                                          "sha256":  "4a9a64f92b247d67ab2579691b7fefcea63c162cd8b9a506de9f04f3ced6ea28",
+                                          "size":  7096
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "save-backup",
+                        "name":  "Save Backup",
+                        "description":  "Zips a game\u0027s save folder before and after you play and keeps the newest ten.",
+                        "author":  "stephenh678",
+                        "version":  "1.0",
+                        "phase":  "both",
+                        "needsAdmin":  false,
+                        "needsAdminReason":  null,
+                        "scriptArguments":  "the save folder in double quotes, then optionally a backup folder",
+                        "dependencies":  "",
+                        "minAppVersion":  "1.4.0",
+                        "source":  "scripts/save-backup",
+                        "files":  [
+                                      {
+                                          "path":  "Example-SaveBackup.ps1",
+                                          "sha256":  "ec930da39dd8a7111f2e91a31c1642a0447c74c532ad808505bd8135b544d444",
+                                          "size":  6314
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "wallpaper-engine-pause",
+                        "name":  "Wallpaper Engine Pause",
+                        "description":  "Pauses and mutes Wallpaper Engine while you play, then resumes it.",
+                        "author":  "stephenh678",
+                        "version":  "1.0",
+                        "phase":  "both",
+                        "needsAdmin":  false,
+                        "needsAdminReason":  null,
+                        "scriptArguments":  "",
+                        "dependencies":  "Wallpaper Engine",
+                        "minAppVersion":  "1.4.0",
+                        "source":  "scripts/wallpaper-engine-pause",
+                        "files":  [
+                                      {
+                                          "path":  "Example-WallpaperEnginePause.ps1",
+                                          "sha256":  "5e55097fc1f546949ece85951dc0db2edfeef43c4f1377c64124d06361e1d4c1",
+                                          "size":  4380
+                                      }
+                                  ]
+                    }
+                ]
+}

@@ -1,0 +1,14 @@
+{
+    "name":  "Companion Apps",
+    "description":  "Starts the tools a game needs when it launches and closes them when it exits.",
+    "author":  "stephenh678",
+    "version":  "1.0",
+    "phase":  "both",
+    "needsAdmin":  false,
+    "scriptArguments":  "full paths of the programs to start, each in double quotes",
+    "dependencies":  "the programs you list",
+    "minAppVersion":  "1.4.0",
+    "files":  [
+                  "Example-CompanionApps.ps1"
+              ]
+}

@@ -1,0 +1,13 @@
+{
+    "name":  "Save Backup",
+    "description":  "Zips a game\u0027s save folder before and after you play and keeps the newest ten.",
+    "author":  "stephenh678",
+    "version":  "1.0",
+    "phase":  "both",
+    "needsAdmin":  false,
+    "scriptArguments":  "the save folder in double quotes, then optionally a backup folder",
+    "minAppVersion":  "1.4.0",
+    "files":  [
+                  "Example-SaveBackup.ps1"
+              ]
+}

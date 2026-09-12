@@ -1,0 +1,13 @@
+{
+    "name":  "Quiet Mode",
+    "description":  "Closes the background apps you name before a game and reopens them after.",
+    "author":  "stephenh678",
+    "version":  "1.0",
+    "phase":  "both",
+    "needsAdmin":  false,
+    "scriptArguments":  "process names to close, separated by spaces",
+    "minAppVersion":  "1.4.0",
+    "files":  [
+                  "Example-QuietMode.ps1"
+              ]
+}

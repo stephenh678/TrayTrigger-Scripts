@@ -1,0 +1,13 @@
+{
+    "name":  "Wallpaper Engine Pause",
+    "description":  "Pauses and mutes Wallpaper Engine while you play, then resumes it.",
+    "author":  "stephenh678",
+    "version":  "1.0",
+    "phase":  "both",
+    "needsAdmin":  false,
+    "dependencies":  "Wallpaper Engine",
+    "minAppVersion":  "1.4.0",
+    "files":  [
+                  "Example-WallpaperEnginePause.ps1"
+              ]
+}
