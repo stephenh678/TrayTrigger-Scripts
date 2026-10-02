@@ -19,16 +19,16 @@ scripts/
 
 ```json
 {
-  "name": "Quiet Mode",
-  "description": "Closes the background apps you name before a game and reopens them after.",
+  "name": "Close Background Apps",
+  "description": "Closes background apps before a game and reopens them after; run as Administrator, it also pauses Windows Update for the game.",
   "author": "your-github-name",
   "version": "1.0",
   "phase": "both",
   "needsAdmin": false,
-  "scriptArguments": "process names to close, separated by spaces",
+  "scriptArguments": "\"recommended\" for the recommended list, and/or process names to close, separated by spaces; empty does nothing",
   "dependencies": "none",
   "minAppVersion": "1.4.0",
-  "files": ["Example-QuietMode.ps1"]
+  "files": ["Example-CloseBackgroundApps.ps1"]
 }
 ```
 
@@ -49,7 +49,7 @@ Do **not** edit `catalog.json` or the README table. Both are regenerated when yo
 
 ## The script itself
 
-Open it with a comment block in the style of the bundled examples: **Name / Description / Author / Version / Phase / Needs admin / Dependencies / Script Arguments**, then **WHY**, **SET IT UP**, **HOW IT WORKS**, **GOOD TO KNOW**, and a `# ---- Change these ----` section for anything a user might edit. Copy [`scripts/quiet-mode/Example-QuietMode.ps1`](scripts/quiet-mode/Example-QuietMode.ps1) as a starting point.
+Open it with a comment block in the style of the bundled examples: **Name / Description / Author / Version / Phase / Needs admin / Dependencies / Script Arguments**, then **WHY**, **SET IT UP**, **HOW IT WORKS**, **GOOD TO KNOW**, and a `# ---- Change these ----` section for anything a user might edit. Copy [`scripts/close-background-apps/Example-CloseBackgroundApps.ps1`](scripts/close-background-apps/Example-CloseBackgroundApps.ps1) as a starting point.
 
 ## Review checklist
 
