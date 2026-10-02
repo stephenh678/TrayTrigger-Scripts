@@ -20,9 +20,9 @@ TrayTrigger runs a script of your choosing just before a game starts and again a
 <!-- CATALOG:START -->
 | Script | What it does | Phase | Admin | Script Arguments |
 |---|---|---|---|---|
+| [Close Background Apps](scripts/close-background-apps) | Closes background apps before a game and reopens them after; run as Administrator, it also pauses Windows Update for the game. | both | no | "recommended" for the recommended list (OneDrive, Dropbox, Google Drive, Creative Cloud, Teams, Slack), and/or process names to close, separated by spaces; empty does nothing |
 | [Companion Apps](scripts/companion-apps) | Starts the tools a game needs when it launches and closes them when it exits. | both | no | full paths of the programs to start, each in double quotes |
 | [OBS Replay Buffer](scripts/obs-replay-buffer) | Runs OBS in the tray with the replay buffer on while you play, then closes it. | both | no | optional OBS profile name, in double quotes |
-| [Quiet Mode](scripts/quiet-mode) | Closes the background apps you name before a game and reopens them after. | both | no | process names to close, separated by spaces |
 | [Save Backup](scripts/save-backup) | Zips a game's save folder before and after you play and keeps the newest ten. | both | no | the save folder in double quotes, then optionally a backup folder |
 | [Wallpaper Engine Pause](scripts/wallpaper-engine-pause) | Pauses and mutes Wallpaper Engine while you play, then resumes it. | both | no | none |
 <!-- CATALOG:END -->

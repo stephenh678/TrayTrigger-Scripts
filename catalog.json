@@ -3,6 +3,27 @@
   "repository": "stephenh678/TrayTrigger-Scripts",
   "scripts": [
     {
+      "id": "close-background-apps",
+      "name": "Close Background Apps",
+      "description": "Closes background apps before a game and reopens them after; run as Administrator, it also pauses Windows Update for the game.",
+      "author": "stephenh678",
+      "version": "2.0",
+      "phase": "both",
+      "needsAdmin": false,
+      "needsAdminReason": null,
+      "scriptArguments": "\"recommended\" for the recommended list (OneDrive, Dropbox, Google Drive, Creative Cloud, Teams, Slack), and/or process names to close, separated by spaces; empty does nothing",
+      "dependencies": "",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/close-background-apps",
+      "files": [
+        {
+          "path": "Example-CloseBackgroundApps.ps1",
+          "sha256": "87d75d9947f8ca3e8540b48c01a7821c3ee5b4d2d79ccce06d0dbc451ac179ea",
+          "size": 13769
+        }
+      ]
+    },
+    {
       "id": "companion-apps",
       "name": "Companion Apps",
       "description": "Starts the tools a game needs when it launches and closes them when it exits.",
@@ -41,27 +62,6 @@
           "path": "Example-OBSReplayBuffer.ps1",
           "sha256": "54370afdbbd7d66b423113b93f76ae1cc5408dba25a1141f1c1302ac9bd0b06f",
           "size": 5462
-        }
-      ]
-    },
-    {
-      "id": "quiet-mode",
-      "name": "Quiet Mode",
-      "description": "Closes the background apps you name before a game and reopens them after.",
-      "author": "stephenh678",
-      "version": "1.0",
-      "phase": "both",
-      "needsAdmin": false,
-      "needsAdminReason": null,
-      "scriptArguments": "process names to close, separated by spaces",
-      "dependencies": "",
-      "minAppVersion": "1.4.0",
-      "source": "scripts/quiet-mode",
-      "files": [
-        {
-          "path": "Example-QuietMode.ps1",
-          "sha256": "b09a6f8429b7bb61c5c6eccc36eabf2755f7723c6a0bb2722a14419f129a4a6c",
-          "size": 6917
         }
       ]
     },
