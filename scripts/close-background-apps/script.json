@@ -2,7 +2,7 @@
     "name": "Close Background Apps",
     "description": "Closes background apps, such as cloud sync, before a game and reopens them after. Ships with TrayTrigger.",
     "author": "stephenh678",
-    "version": "3.1",
+    "version": "3.2",
     "phase": "both",
     "needsAdmin": false,
     "scriptArguments": "\"recommended\" for the recommended list (OneDrive, Dropbox, Google Drive), and/or process names to close, separated by spaces, and \"force\" to end any that don't close when asked; empty does nothing",
