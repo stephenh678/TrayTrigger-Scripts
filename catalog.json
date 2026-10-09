@@ -1,174 +1,174 @@
 {
-    "schemaVersion":  1,
-    "repository":  "stephenh678/TrayTrigger-Scripts",
-    "scripts":  [
-                    {
-                        "id":  "afterburner-profile",
-                        "name":  "Set Afterburner Profile",
-                        "description":  "Switches MSI Afterburner to one of its five profiles for a game, and to another one after it.",
-                        "author":  "stephenh678",
-                        "version":  "1.0",
-                        "phase":  "both",
-                        "needsAdmin":  true,
-                        "needsAdminReason":  "MSI Afterburner runs as Administrator and only accepts its -Profile switch from a process that does too; without elevation Windows shows a permission prompt for each switch.",
-                        "scriptArguments":  "the profile number for the game (1 to 5), optionally the number to switch to after it (\"3 1\"); a path ending in MSIAfterburner.exe overrides where it\u0027s looked for",
-                        "dependencies":  "MSI Afterburner",
-                        "minAppVersion":  "1.4.0",
-                        "source":  "scripts/afterburner-profile",
-                        "files":  [
-                                      {
-                                          "path":  "Set-AfterburnerProfile.ps1",
-                                          "sha256":  "982756eb95a711c3c8744d16a9d1b871cb9687d80ef51496382eb3569fb9bc77",
-                                          "size":  5287
-                                      }
-                                  ]
-                    },
-                    {
-                        "id":  "close-background-apps",
-                        "name":  "Close Background Apps",
-                        "description":  "Closes background apps, such as cloud sync, before a game and reopens them after. Ships with TrayTrigger.",
-                        "author":  "stephenh678",
-                        "version":  "3.1",
-                        "phase":  "both",
-                        "needsAdmin":  false,
-                        "needsAdminReason":  null,
-                        "scriptArguments":  "\"recommended\" for the recommended list (OneDrive, Dropbox, Google Drive), and/or process names to close, separated by spaces, and \"force\" to end any that don\u0027t close when asked; empty does nothing",
-                        "dependencies":  "",
-                        "minAppVersion":  "1.4.0",
-                        "source":  "scripts/close-background-apps",
-                        "files":  [
-                                      {
-                                          "path":  "Example-CloseBackgroundApps.ps1",
-                                          "sha256":  "169ed0dd056e3348d172dd14e7fa55e550e632b04bce444065a88b7bb43990d0",
-                                          "size":  14062
-                                      }
-                                  ]
-                    },
-                    {
-                        "id":  "companion-apps",
-                        "name":  "Start Companion Apps",
-                        "description":  "Starts the tools a game needs when it launches and closes them when it exits. Ships with TrayTrigger.",
-                        "author":  "stephenh678",
-                        "version":  "2.1",
-                        "phase":  "both",
-                        "needsAdmin":  false,
-                        "needsAdminReason":  null,
-                        "scriptArguments":  "full paths of the programs to start, each in double quotes, and \"force\" to end any that don\u0027t close when asked",
-                        "dependencies":  "the programs you list",
-                        "minAppVersion":  "1.4.0",
-                        "source":  "scripts/companion-apps",
-                        "files":  [
-                                      {
-                                          "path":  "Example-StartCompanionApps.ps1",
-                                          "sha256":  "19f2a5b3136715e5e1fc4a66af4f8b6afb9d0d20d1cb30dfee80e345b0d0635a",
-                                          "size":  12223
-                                      }
-                                  ]
-                    },
-                    {
-                        "id":  "log-playtime",
-                        "name":  "Log Playtime",
-                        "description":  "Appends one line per session to a CSV file: when you played, which game, and for how long.",
-                        "author":  "stephenh678",
-                        "version":  "1.0",
-                        "phase":  "postexit",
-                        "needsAdmin":  false,
-                        "needsAdminReason":  null,
-                        "scriptArguments":  "optionally the full path of the CSV file in double quotes; Documents\\TrayTrigger Playtime.csv by default",
-                        "dependencies":  "",
-                        "minAppVersion":  "1.4.0",
-                        "source":  "scripts/log-playtime",
-                        "files":  [
-                                      {
-                                          "path":  "Log-Playtime.ps1",
-                                          "sha256":  "8a5def87d6c5333b44722aa9ad58a899a1d8a695a1f82d4902431ab1bc324d7a",
-                                          "size":  4119
-                                      }
-                                  ]
-                    },
-                    {
-                        "id":  "obs-replay-buffer",
-                        "name":  "OBS Replay Buffer",
-                        "description":  "Runs OBS in the tray with the replay buffer on while you play, or recording, then closes it so a recording is saved.",
-                        "author":  "stephenh678",
-                        "version":  "1.1",
-                        "phase":  "both",
-                        "needsAdmin":  false,
-                        "needsAdminReason":  null,
-                        "scriptArguments":  "\"record\" to record instead of running the replay buffer, and optionally an OBS profile name in double quotes",
-                        "dependencies":  "OBS Studio 30 or newer, with the replay buffer set up",
-                        "minAppVersion":  "1.4.0",
-                        "source":  "scripts/obs-replay-buffer",
-                        "files":  [
-                                      {
-                                          "path":  "Example-OBSReplayBuffer.ps1",
-                                          "sha256":  "ec3b95686c990a4126b870950f76e1a0506c1b46ffa48b9d6b6eac41c851974e",
-                                          "size":  6754
-                                      }
-                                  ]
-                    },
-                    {
-                        "id":  "save-backup",
-                        "name":  "Save Backup",
-                        "description":  "Zips a game\u0027s save folder before and after you play and keeps the newest ten.",
-                        "author":  "stephenh678",
-                        "version":  "1.1",
-                        "phase":  "both",
-                        "needsAdmin":  false,
-                        "needsAdminReason":  null,
-                        "scriptArguments":  "the save folder in double quotes, then optionally a backup folder",
-                        "dependencies":  "",
-                        "minAppVersion":  "1.4.0",
-                        "source":  "scripts/save-backup",
-                        "files":  [
-                                      {
-                                          "path":  "Example-SaveBackup.ps1",
-                                          "sha256":  "368564955100e626da7f2e26e11b57d4d248597bb8c934e52757399886210920",
-                                          "size":  7021
-                                      }
-                                  ]
-                    },
-                    {
-                        "id":  "set-display-mode",
-                        "name":  "Set Display Mode",
-                        "description":  "Switches a display\u0027s refresh rate and/or resolution for one game and puts the previous mode back when the game exits.",
-                        "author":  "stephenh678",
-                        "version":  "1.0",
-                        "phase":  "both",
-                        "needsAdmin":  false,
-                        "needsAdminReason":  null,
-                        "scriptArguments":  "a refresh rate (\"144\"), a resolution (\"1920x1080\"), or both; \"display:2\" for a display other than the primary",
-                        "dependencies":  "",
-                        "minAppVersion":  "1.4.0",
-                        "source":  "scripts/set-display-mode",
-                        "files":  [
-                                      {
-                                          "path":  "Set-DisplayMode.ps1",
-                                          "sha256":  "9f3346cbf242efb335078dd067202562293b3991594e969f6f15627fe0d2650b",
-                                          "size":  12358
-                                      }
-                                  ]
-                    },
-                    {
-                        "id":  "wallpaper-engine-pause",
-                        "name":  "Wallpaper Engine Pause",
-                        "description":  "Pauses and mutes Wallpaper Engine while you play, then resumes it.",
-                        "author":  "stephenh678",
-                        "version":  "1.1",
-                        "phase":  "both",
-                        "needsAdmin":  false,
-                        "needsAdminReason":  null,
-                        "scriptArguments":  "",
-                        "dependencies":  "Wallpaper Engine",
-                        "minAppVersion":  "1.4.0",
-                        "source":  "scripts/wallpaper-engine-pause",
-                        "files":  [
-                                      {
-                                          "path":  "Example-WallpaperEnginePause.ps1",
-                                          "sha256":  "fef6cdb38cd91e0ade938e547a39b03279ffc5cebf4a05ae18722f4fb1fba1dc",
-                                          "size":  4783
-                                      }
-                                  ]
-                    }
-                ]
+  "schemaVersion": 1,
+  "repository": "stephenh678/TrayTrigger-Scripts",
+  "scripts": [
+    {
+      "id": "afterburner-profile",
+      "name": "Set Afterburner Profile",
+      "description": "Switches MSI Afterburner to one of its five profiles for a game, and to another one after it.",
+      "author": "stephenh678",
+      "version": "1.0",
+      "phase": "both",
+      "needsAdmin": true,
+      "needsAdminReason": "MSI Afterburner runs as Administrator and only accepts its -Profile switch from a process that does too; without elevation Windows shows a permission prompt for each switch.",
+      "scriptArguments": "the profile number for the game (1 to 5), optionally the number to switch to after it (\"3 1\"); a path ending in MSIAfterburner.exe overrides where it's looked for",
+      "dependencies": "MSI Afterburner",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/afterburner-profile",
+      "files": [
+        {
+          "path": "Set-AfterburnerProfile.ps1",
+          "sha256": "982756eb95a711c3c8744d16a9d1b871cb9687d80ef51496382eb3569fb9bc77",
+          "size": 5287
+        }
+      ]
+    },
+    {
+      "id": "close-background-apps",
+      "name": "Close Background Apps",
+      "description": "Closes background apps, such as cloud sync, before a game and reopens them after. Ships with TrayTrigger.",
+      "author": "stephenh678",
+      "version": "3.1",
+      "phase": "both",
+      "needsAdmin": false,
+      "needsAdminReason": null,
+      "scriptArguments": "\"recommended\" for the recommended list (OneDrive, Dropbox, Google Drive), and/or process names to close, separated by spaces, and \"force\" to end any that don't close when asked; empty does nothing",
+      "dependencies": "",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/close-background-apps",
+      "files": [
+        {
+          "path": "Example-CloseBackgroundApps.ps1",
+          "sha256": "59c87d3b89b1cfbb05bc487214bd47cb3d7ebfcc6e75f94baad2bd2c4a3c6203",
+          "size": 13762
+        }
+      ]
+    },
+    {
+      "id": "companion-apps",
+      "name": "Start Companion Apps",
+      "description": "Starts the tools a game needs when it launches and closes them when it exits. Ships with TrayTrigger.",
+      "author": "stephenh678",
+      "version": "2.1",
+      "phase": "both",
+      "needsAdmin": false,
+      "needsAdminReason": null,
+      "scriptArguments": "full paths of the programs to start, each in double quotes, and \"force\" to end any that don't close when asked",
+      "dependencies": "the programs you list",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/companion-apps",
+      "files": [
+        {
+          "path": "Example-StartCompanionApps.ps1",
+          "sha256": "b0a1c0ec3555a4a3e674f9abb49ede9a822b012f8e83e883c704826dd24ca48d",
+          "size": 11954
+        }
+      ]
+    },
+    {
+      "id": "log-playtime",
+      "name": "Log Playtime",
+      "description": "Appends one line per session to a CSV file: when you played, which game, and for how long.",
+      "author": "stephenh678",
+      "version": "1.0",
+      "phase": "postexit",
+      "needsAdmin": false,
+      "needsAdminReason": null,
+      "scriptArguments": "optionally the full path of the CSV file in double quotes; Documents\\TrayTrigger Playtime.csv by default",
+      "dependencies": "",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/log-playtime",
+      "files": [
+        {
+          "path": "Log-Playtime.ps1",
+          "sha256": "8a5def87d6c5333b44722aa9ad58a899a1d8a695a1f82d4902431ab1bc324d7a",
+          "size": 4119
+        }
+      ]
+    },
+    {
+      "id": "obs-replay-buffer",
+      "name": "OBS Replay Buffer",
+      "description": "Runs OBS in the tray with the replay buffer on while you play, or recording, then closes it so a recording is saved.",
+      "author": "stephenh678",
+      "version": "1.1",
+      "phase": "both",
+      "needsAdmin": false,
+      "needsAdminReason": null,
+      "scriptArguments": "\"record\" to record instead of running the replay buffer, and optionally an OBS profile name in double quotes",
+      "dependencies": "OBS Studio 30 or newer, with the replay buffer set up",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/obs-replay-buffer",
+      "files": [
+        {
+          "path": "Example-OBSReplayBuffer.ps1",
+          "sha256": "399fd6b5b8754bdf75f485efe5cf532aa77b54f4485f7fb6f072a6a92da15659",
+          "size": 6597
+        }
+      ]
+    },
+    {
+      "id": "save-backup",
+      "name": "Save Backup",
+      "description": "Zips a game's save folder before and after you play and keeps the newest ten.",
+      "author": "stephenh678",
+      "version": "1.1",
+      "phase": "both",
+      "needsAdmin": false,
+      "needsAdminReason": null,
+      "scriptArguments": "the save folder in double quotes, then optionally a backup folder",
+      "dependencies": "",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/save-backup",
+      "files": [
+        {
+          "path": "Example-SaveBackup.ps1",
+          "sha256": "92a6879fd88ae043558bc9408346fc1bcdb6eb627a8fb83cb4592640f048d0e9",
+          "size": 6855
+        }
+      ]
+    },
+    {
+      "id": "set-display-mode",
+      "name": "Set Display Mode",
+      "description": "Switches a display's refresh rate and/or resolution for one game and puts the previous mode back when the game exits.",
+      "author": "stephenh678",
+      "version": "1.0",
+      "phase": "both",
+      "needsAdmin": false,
+      "needsAdminReason": null,
+      "scriptArguments": "a refresh rate (\"144\"), a resolution (\"1920x1080\"), or both; \"display:2\" for a display other than the primary",
+      "dependencies": "",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/set-display-mode",
+      "files": [
+        {
+          "path": "Set-DisplayMode.ps1",
+          "sha256": "9f3346cbf242efb335078dd067202562293b3991594e969f6f15627fe0d2650b",
+          "size": 12358
+        }
+      ]
+    },
+    {
+      "id": "wallpaper-engine-pause",
+      "name": "Wallpaper Engine Pause",
+      "description": "Pauses and mutes Wallpaper Engine while you play, then resumes it.",
+      "author": "stephenh678",
+      "version": "1.1",
+      "phase": "both",
+      "needsAdmin": false,
+      "needsAdminReason": null,
+      "scriptArguments": "",
+      "dependencies": "Wallpaper Engine",
+      "minAppVersion": "1.4.0",
+      "source": "scripts/wallpaper-engine-pause",
+      "files": [
+        {
+          "path": "Example-WallpaperEnginePause.ps1",
+          "sha256": "5a4449d9b94089d6150570354f61d3dee64f4d42e9d8182b83cdf67d79b87ae5",
+          "size": 4662
+        }
+      ]
+    }
+  ]
 }
