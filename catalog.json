@@ -28,7 +28,7 @@
       "name": "Close Background Apps",
       "description": "Closes background apps, such as cloud sync, before a game and reopens them after. Ships with TrayTrigger.",
       "author": "stephenh678",
-      "version": "3.1",
+      "version": "3.2",
       "phase": "both",
       "needsAdmin": false,
       "needsAdminReason": null,
@@ -39,8 +39,8 @@
       "files": [
         {
           "path": "Example-CloseBackgroundApps.ps1",
-          "sha256": "59c87d3b89b1cfbb05bc487214bd47cb3d7ebfcc6e75f94baad2bd2c4a3c6203",
-          "size": 13762
+          "sha256": "1d220617451c0225ef649c165a4e9b8158e44536799101775ec08a7558b03381",
+          "size": 14055
         }
       ]
     },
