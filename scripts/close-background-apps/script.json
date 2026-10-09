@@ -1,13 +1,13 @@
 {
-    "name":  "Close Background Apps",
-    "description":  "Closes background apps before a game and reopens them after; run as Administrator, it also pauses Windows Update for the game.",
-    "author":  "stephenh678",
-    "version":  "2.0",
-    "phase":  "both",
-    "needsAdmin":  false,
-    "scriptArguments":  "\"recommended\" for the recommended list (OneDrive, Dropbox, Google Drive, Creative Cloud, Teams, Slack), and/or process names to close, separated by spaces; empty does nothing",
-    "minAppVersion":  "1.4.0",
-    "files":  [
-                  "Example-CloseBackgroundApps.ps1"
-              ]
+    "name": "Close Background Apps",
+    "description": "Closes background apps, such as cloud sync, before a game and reopens them after. Ships with TrayTrigger.",
+    "author": "stephenh678",
+    "version": "3.1",
+    "phase": "both",
+    "needsAdmin": false,
+    "scriptArguments": "\"recommended\" for the recommended list (OneDrive, Dropbox, Google Drive), and/or process names to close, separated by spaces, and \"force\" to end any that don't close when asked; empty does nothing",
+    "minAppVersion": "1.4.0",
+    "files": [
+        "Example-CloseBackgroundApps.ps1"
+    ]
 }

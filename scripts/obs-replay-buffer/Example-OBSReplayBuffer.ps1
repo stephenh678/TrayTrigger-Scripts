@@ -1,12 +1,14 @@
 <#
   Name:             OBS Replay Buffer
-  Description:      Runs OBS in the tray with the replay buffer on while you play, then closes it.
+  Description:      Runs OBS in the tray with the replay buffer on while you play, or
+                    recording, then closes it so a recording is saved.
   Author:           TrayTrigger
-  Version:          1.0
+  Version:          1.1
   Phase:            both
   Needs admin:      no
   Dependencies:     OBS Studio 30 or newer, with the replay buffer set up
-  Script Arguments: optional OBS profile name, in double quotes
+  Script Arguments: "record" to record instead of running the replay buffer, and
+                    optionally an OBS profile name, in double quotes
 
   WHY
     With the replay buffer running, OBS keeps the last minute or two of
@@ -21,6 +23,9 @@
        the same script for pre-launch and post-exit". To use a different OBS
        profile for this game, put its name in Script Arguments, for example:
          "Competitive 1080p"
+       To record the whole session instead of keeping a replay buffer, add
+       record:
+         record "Competitive 1080p"
     3. Press Test next to the pre-launch box: OBS appears in the tray. Press
        Test next to the post-exit box: it closes.
 
@@ -28,7 +33,14 @@
     prelaunch  If OBS is already open, does nothing: you might be streaming
                or recording. Otherwise starts OBS minimized to the tray with
                the replay buffer running, and notes that in your TEMP folder.
-    postexit   If this script started OBS, closes it.
+    postexit   If this script started OBS, closes it. OBS saves a recording
+               as it closes.
+
+  SAYING WHAT IT DID
+    A line this script prints starting with "TT:" is for the player:
+    TrayTrigger 1.6.1 and later put it on the game's Played row in Activity &
+    History and show it in the launch popup before the game. Older versions
+    treat it as ordinary output.
 
   GOOD TO KNOW
     OBS has to be started from its own folder or it can't find its files, so
@@ -40,8 +52,8 @@
     check turned off, so that doesn't cause a safe-mode prompt next time.
 
   MAKE IT YOURS
-    OBS has more startup options: --startrecording, --startstreaming,
-    --scene "name" and --collection "name". Add them to $obsArguments below.
+    OBS has more startup options: --startstreaming, --scene "name" and
+    --collection "name". Add them to $obsArguments below.
     Installed OBS through Steam? Change $ObsExe to the Steam path shown there.
 #>
 param(
@@ -74,19 +86,27 @@ switch ($Phase) {
         # Never touch an OBS you opened yourself.
         if (Get-Process -Name 'obs64' -ErrorAction SilentlyContinue) {
             Write-Output 'OBS is already open. Leaving it alone.'
+            Write-Output 'TT: OBS already open, left as it is'
             exit 0
         }
         if (-not (Test-Path -LiteralPath $ObsExe -PathType Leaf)) {
-            Write-Output "OBS was not found at $ObsExe. Change `$ObsExe at the top of this script."
-            exit 0
+            Write-Output "TT: OBS wasn't found at $ObsExe; change `$ObsExe at the top of this script"
+            exit 1
         }
 
-        $obsArguments = @('--minimize-to-tray', '--startreplaybuffer', '--disable-shutdown-check')
-        if ($ScriptArgs -and $ScriptArgs[0]) {
+        # "record" is a switch; any other word is the profile name.
+        $record = $false
+        $profile = $null
+        foreach ($arg in $ScriptArgs) {
+            if ($arg -eq 'record') { $record = $true }
+            elseif ($arg) { $profile = $arg }
+        }
+        $obsArguments = @('--minimize-to-tray', $(if ($record) { '--startrecording' } else { '--startreplaybuffer' }), '--disable-shutdown-check')
+        if ($profile) {
             # Windows PowerShell joins these with spaces and adds no quotes, so a
             # profile name with spaces needs its own.
             $obsArguments += '--profile'
-            $obsArguments += '"' + $ScriptArgs[0] + '"'
+            $obsArguments += '"' + $profile + '"'
         }
 
         $obs = Start-Process -FilePath $ObsExe -ArgumentList $obsArguments `
@@ -94,6 +114,8 @@ switch ($Phase) {
 
         Set-Content -LiteralPath $note -Value $obs.Id
         Write-Output "Started OBS with the replay buffer for $GameName."
+        if ($record) { Write-Output 'TT: OBS recording, saved and closed after the game' }
+        else { Write-Output 'TT: OBS replay buffer running, closed after the game' }
     }
 
     'postexit' {
@@ -108,7 +130,7 @@ switch ($Phase) {
         $obs = Get-Process -Id $obsId -ErrorAction SilentlyContinue |
             Where-Object { $_.ProcessName -eq 'obs64' }
         if (-not $obs) {
-            Write-Output 'OBS has already closed.'
+            Write-Output 'TT: OBS had already closed'
             exit 0
         }
 
@@ -118,11 +140,11 @@ switch ($Phase) {
         taskkill.exe /PID $obsId | Out-Null
 
         if ($obs.WaitForExit($GraceSeconds * 1000)) {
-            Write-Output 'Closed OBS.'
+            Write-Output 'TT: OBS closed'
         }
         else {
             Stop-Process -Id $obsId -Force -ErrorAction SilentlyContinue
-            Write-Output 'OBS did not close in time and was ended.'
+            Write-Output "TT: OBS didn't close in $GraceSeconds seconds and was ended"
         }
     }
 

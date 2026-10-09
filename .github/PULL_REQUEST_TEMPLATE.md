@@ -10,6 +10,7 @@
 - [ ] Nothing destructive: closes only what the user named or the script started; leaves no state behind after post-exit except what the description says
 - [ ] `needsAdmin` is false, or `needsAdminReason` explains exactly why
 - [ ] Every action is commented
+- [ ] Says what it did with `TT:` lines; a failure gets one before the non-zero exit
 - [ ] Safe if pre-launch runs twice, or post-exit runs without a pre-launch
 - [ ] `catalog.json` and the README table are untouched (they're regenerated on merge)
 

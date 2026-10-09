@@ -1,0 +1,13 @@
+{
+    "name": "Log Playtime",
+    "description": "Appends one line per session to a CSV file: when you played, which game, and for how long.",
+    "author": "stephenh678",
+    "version": "1.0",
+    "phase": "postexit",
+    "needsAdmin": false,
+    "scriptArguments": "optionally the full path of the CSV file in double quotes; Documents\\TrayTrigger Playtime.csv by default",
+    "minAppVersion": "1.4.0",
+    "files": [
+        "Log-Playtime.ps1"
+    ]
+}

@@ -2,7 +2,7 @@
   Name:             Save Backup
   Description:      Zips a game's save folder before and after you play and keeps the newest ten.
   Author:           TrayTrigger
-  Version:          1.0
+  Version:          1.1
   Phase:            both
   Needs admin:      no
   Dependencies:     none
@@ -36,6 +36,12 @@
     postexit   Does the same, named with the minutes you played.
     both       Deletes the oldest zips so only the newest ten are kept. The
                save folder itself is only ever read.
+
+  SAYING WHAT IT DID
+    A line this script prints starting with "TT:" is for the player:
+    TrayTrigger 1.6.1 and later put it on the game's Played row in Activity &
+    History and show it in the launch popup before the game. Older versions
+    treat it as ordinary output.
 
   GOOD TO KNOW
     TrayTrigger waits 10 seconds for a pre-launch script by default. Zipping
@@ -84,8 +90,8 @@ if ($Phase -eq 'prelaunch' -and -not $BackupBeforePlaying) {
     exit 0
 }
 if (-not $ScriptArgs -or -not $ScriptArgs[0]) {
-    Write-Output 'No save folder given. Put it in Edit Game > Script Arguments, for example: "%APPDATA%\EldenRing"'
-    exit 0
+    Write-Output 'TT: no save folder given. Put it in Edit Game > Script Arguments, for example: "%APPDATA%\EldenRing"'
+    exit 1
 }
 
 # Windows doesn't expand %...% in Script Arguments for a PowerShell script, so
@@ -100,7 +106,7 @@ $backupFolder = if ($ScriptArgs.Count -ge 2 -and $ScriptArgs[1]) {
 # Exit code 1 puts the failure in the TrayTrigger log. It only stops the game
 # from starting if you ticked "Cancel the launch if the pre-launch script fails".
 if (-not (Test-Path -LiteralPath $source -PathType Container)) {
-    Write-Output "Save folder not found: $source"
+    Write-Output "TT: save folder not found: $source"
     exit 1
 }
 
@@ -120,6 +126,7 @@ $newestSave = Get-ChildItem -LiteralPath $source -Recurse -File -ErrorAction Sil
     Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if ($newestZip -and (-not $newestSave -or $newestSave.LastWriteTime -le $newestZip.LastWriteTime)) {
     Write-Output "No changes since the last backup, $($newestZip.Name)."
+    Write-Output 'TT: saves unchanged since the last backup, nothing to do'
     exit 0
 }
 
@@ -138,7 +145,7 @@ try {
 catch {
     # A half-written zip is worse than none.
     Remove-Item -LiteralPath $zip -Force -ErrorAction SilentlyContinue
-    Write-Output "Backup failed: $($_.Exception.Message)"
+    Write-Output "TT: the save backup failed: $($_.Exception.Message)"
     exit 1
 }
 
@@ -150,5 +157,10 @@ Get-ChildItem -LiteralPath $gameFolder -Filter '*.zip' -File |
         Remove-Item -LiteralPath $_.FullName -Force
         Write-Output "Removed old backup $($_.Name)"
     }
+
+$size = (Get-Item -LiteralPath $zip).Length
+$sizeText = if ($size -ge 1MB) { '{0:0.0} MB' -f ($size / 1MB) } else { '{0:0} KB' -f [Math]::Max(1, $size / 1KB) }
+$kept = @(Get-ChildItem -LiteralPath $gameFolder -Filter '*.zip' -File).Count
+Write-Output "TT: saves backed up $label ($sizeText), $kept kept in $gameFolder"
 
 exit 0

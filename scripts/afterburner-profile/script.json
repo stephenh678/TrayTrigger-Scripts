@@ -1,0 +1,15 @@
+{
+    "name": "Set Afterburner Profile",
+    "description": "Switches MSI Afterburner to one of its five profiles for a game, and to another one after it.",
+    "author": "stephenh678",
+    "version": "1.0",
+    "phase": "both",
+    "needsAdmin": true,
+    "needsAdminReason": "MSI Afterburner runs as Administrator and only accepts its -Profile switch from a process that does too; without elevation Windows shows a permission prompt for each switch.",
+    "scriptArguments": "the profile number for the game (1 to 5), optionally the number to switch to after it (\"3 1\"); a path ending in MSIAfterburner.exe overrides where it's looked for",
+    "dependencies": "MSI Afterburner",
+    "minAppVersion": "1.4.0",
+    "files": [
+        "Set-AfterburnerProfile.ps1"
+    ]
+}

@@ -2,7 +2,7 @@
   Name:             Wallpaper Engine Pause
   Description:      Pauses and mutes Wallpaper Engine while you play, then resumes it.
   Author:           TrayTrigger
-  Version:          1.0
+  Version:          1.1
   Phase:            both
   Needs admin:      no
   Dependencies:     Wallpaper Engine
@@ -28,6 +28,12 @@
     postexit   If that note exists, sends "play" and "unmute" and deletes the
                note. If Wallpaper Engine wasn't running before the game,
                nothing happens after it either.
+
+  SAYING WHAT IT DID
+    A line this script prints starting with "TT:" is for the player:
+    TrayTrigger 1.6.1 and later put it on the game's Played row in Activity &
+    History and show it in the launch popup before the game. Older versions
+    treat it as ordinary output.
 
   MAKE IT YOURS
     Wallpaper Engine's command line can do more than pause. Swap "pause" for
@@ -75,7 +81,7 @@ switch ($Phase) {
             Where-Object { $_.Path } |
             Select-Object -First 1
         if (-not $running) {
-            Write-Output 'Wallpaper Engine is not running. Nothing to pause.'
+            Write-Output 'TT: Wallpaper Engine isn''t running, nothing to pause'
             exit 0
         }
 
@@ -85,6 +91,7 @@ switch ($Phase) {
         # Remember which exe to talk to after the game.
         Set-Content -LiteralPath $note -Value $running.Path
         Write-Output "Paused Wallpaper Engine for $GameName."
+        Write-Output "TT: Wallpaper Engine paused$(if ($AlsoMute) { ' and muted' }), resumes after the game"
     }
 
     'postexit' {
@@ -96,13 +103,13 @@ switch ($Phase) {
         Remove-Item -LiteralPath $note -Force
 
         if (-not (Get-Process -Name $ProcessNames -ErrorAction SilentlyContinue)) {
-            Write-Output 'Wallpaper Engine was closed during the game. Nothing to resume.'
+            Write-Output 'TT: Wallpaper Engine was closed during the game, nothing to resume'
             exit 0
         }
 
         Send-WallpaperCommand $exe 'play'
         if ($AlsoMute) { Send-WallpaperCommand $exe 'unmute' }
-        Write-Output 'Resumed Wallpaper Engine.'
+        Write-Output 'TT: Wallpaper Engine resumed'
     }
 
     default {

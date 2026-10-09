@@ -8,12 +8,12 @@ Thanks for sharing. Every script in this catalog is read by a maintainer before 
 scripts/
   your-script-id/
     script.json          the manifest (required)
-    YourScript.ps1       the script (one or more files, .ps1 / .bat / .cmd)
+    YourScript.ps1       the script (PowerShell only; one or more .ps1 files)
 ```
 
 - The folder name is the script's id: lower-case, hyphens, no spaces (`save-backup`, `obs-replay-buffer`).
 - Every script file in the folder must be listed in `script.json`. Nothing ships unlisted.
-- No binaries, no archives, no files that aren't scripts.
+- No binaries, no archives, no files that aren't scripts. PowerShell only: one language keeps the header, the `param` block and the `TT:` lines the same in every script, so a reader of one can read them all.
 
 ## script.json
 
@@ -49,7 +49,9 @@ Do **not** edit `catalog.json` or the README table. Both are regenerated when yo
 
 ## The script itself
 
-Open it with a comment block in the style of the bundled examples: **Name / Description / Author / Version / Phase / Needs admin / Dependencies / Script Arguments**, then **WHY**, **SET IT UP**, **HOW IT WORKS**, **GOOD TO KNOW**, and a `# ---- Change these ----` section for anything a user might edit. Copy [`scripts/close-background-apps/Example-CloseBackgroundApps.ps1`](scripts/close-background-apps/Example-CloseBackgroundApps.ps1) as a starting point.
+Open it with a comment block in the style of the bundled examples: **Name / Description / Author / Version / Phase / Needs admin / Dependencies / Script Arguments**, then **WHY**, **SET IT UP**, **HOW IT WORKS**, **GOOD TO KNOW**, and a `# ---- Change these ----` section for anything a user might edit. Copy [`scripts/set-display-mode/Set-DisplayMode.ps1`](scripts/set-display-mode/Set-DisplayMode.ps1) as a starting point: it's the shape every script here follows.
+
+Say what the script did with `TT:` lines. A line printed as `TT: closed OneDrive and Discord` goes on the game's Played row in Activity & History and into the launch popup; everything else the script prints goes to the log. One or two per phase, in plain words, as a fragment that follows "ran · ". When the script fails, print a `TT:` line saying why before exiting non-zero: it becomes the problem row's explanation.
 
 ## Review checklist
 
@@ -61,13 +63,14 @@ The maintainer checks every one of these. Tick them in the PR.
 - [ ] Nothing destructive: closes only processes the user named in Script Arguments or that the script itself started. No deleting files it didn't create, no registry writes outside the script's stated purpose, no changes that survive the post-exit phase.
 - [ ] `needsAdmin` is `false`, or `needsAdminReason` says exactly which action needs elevation and why it can't be avoided.
 - [ ] Every action has a comment saying what it does and why.
+- [ ] Says what it did with `TT:` lines, and explains a failure with one before exiting non-zero.
 - [ ] Handles the pre-launch phase being run twice (a launch that was cancelled, then retried) and the post-exit phase running without a matching pre-launch (TrayTrigger closed mid-game and ran it on next start).
 - [ ] Tested with **Test Run** in TrayTrigger for both phases, and the PR says what you saw.
 - [ ] Leaves no state behind after post-exit except what the description says it keeps (a backup file, for example).
 
 ## Updating a script you contributed
 
-Open a PR that bumps `version` in `script.json` and explains the change. Users are never auto-updated; the app will show "newer version in catalog" and let them re-install explicitly.
+Open a PR that bumps `version` in `script.json` and in the script's header, and explains the change. Users are never auto-updated: a script in their folder is theirs, and they download the newer one when they choose to.
 
 ## Reporting a problem with a script
 

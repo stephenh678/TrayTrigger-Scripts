@@ -24,7 +24,7 @@ $scriptsDir = Join-Path $root 'scripts'
 $utf8 = [System.Text.UTF8Encoding]::new($false)
 
 $phases = 'prelaunch', 'postexit', 'both'
-$allowedExt = '.ps1', '.bat', '.cmd'
+$allowedExt = @('.ps1')  # PowerShell only: one language keeps the header and the TT: lines the same everywhere
 $problems = New-Object System.Collections.Generic.List[string]
 function Fail([string] $id, [string] $msg) { $problems.Add("scripts/$id`: $msg") }
 
