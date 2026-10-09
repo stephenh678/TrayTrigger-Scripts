@@ -1,6 +1,8 @@
 # Contributing a script
 
-Thanks for sharing. Every script in this catalog is read by a maintainer before it's merged, because it will run on other people's PCs with their privileges. The checklist below is what the review looks for; going through it first makes the review fast.
+Thanks for sharing. New to writing one? Start with [HOW-TO-WRITE-A-SCRIPT.md](HOW-TO-WRITE-A-SCRIPT.md).
+
+Every script in this catalog is read by a maintainer before it's merged, because it will run on other people's PCs with their privileges. The checklist below is what the review looks for; going through it first makes the review fast.
 
 ## Folder layout
 
@@ -57,7 +59,7 @@ Say what the script did with `TT:` lines. A line printed as `TT: closed OneDrive
 
 The maintainer checks every one of these. Tick them in the PR.
 
-- [ ] Uses only the documented positional arguments (`%1`–`%5` / `$args[0..4]`) and Script Arguments (`%6`+ / `$args[5..]`), or the `TRAYTRIGGER_*` environment variables.
+- [ ] Uses only the documented positional arguments (`$Phase`, `$GameName`, `$GameExe`, `$GameId`, `$Playtime`) and Script Arguments (`$ScriptArgs`), or the `TRAYTRIGGER_*` environment variables.
 - [ ] No downloads and no network calls.
 - [ ] No `Invoke-Expression`, no `iex`, no `Start-Process powershell -EncodedCommand`, no module installs (`Install-Module`), no `Set-ExecutionPolicy`.
 - [ ] Nothing destructive: closes only processes the user named in Script Arguments or that the script itself started. No deleting files it didn't create, no registry writes outside the script's stated purpose, no changes that survive the post-exit phase.

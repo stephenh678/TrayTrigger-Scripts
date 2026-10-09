@@ -44,6 +44,10 @@ Every script opens with a comment block: why you'd want it, how to set it up, ho
 
 Once it's in your folder the script is yours: TrayTrigger never changes a file it didn't put there. A newer version here is never installed over it by itself.
 
+## Writing your own
+
+[HOW-TO-WRITE-A-SCRIPT.md](HOW-TO-WRITE-A-SCRIPT.md) walks you through it: every value TrayTrigger passes in, carrying state from before the game to after, `TT:` lines, testing, the usual pitfalls, and a complete example.
+
 ## Sharing a script
 
 Post it in [Show and tell](https://github.com/stephenh678/TrayTrigger/discussions/7) first if you want feedback, or open a pull request here directly. [CONTRIBUTING.md](CONTRIBUTING.md) has the folder layout, the `script.json` fields, and the review checklist. The short version:
@@ -63,7 +67,7 @@ Post it in [Show and tell](https://github.com/stephenh678/TrayTrigger/discussion
 
 ## Script contract
 
-Arguments, in order: phase (`prelaunch` or `postexit`), game name, game exe path, game ID, playtime in minutes (empty on pre-launch). Script Arguments follow from `$args[5]`; every script here reads them all through the same `param` block. Environment variables `TRAYTRIGGER_PHASE`, `TRAYTRIGGER_GAME_NAME`, `TRAYTRIGGER_GAME_ID`, `TRAYTRIGGER_GAME_EXE`, and after exit `TRAYTRIGGER_PLAYTIME_MINUTES` (not set when running as Administrator). A line printed as `TT: ...` is shown to the player on the game's Played row and in the launch popup; up to five per run, the last one explaining a failure. Full details on the wiki: [Pre-Launch and Post-Exit Scripts](https://github.com/stephenh678/TrayTrigger/wiki/Pre-Launch-and-Post-Exit-Scripts) and [Writing your own script](https://github.com/stephenh678/TrayTrigger/wiki/Writing-your-own-script).
+Arguments, in order: phase (`prelaunch` or `postexit`), game name, game exe path, game ID, playtime in minutes (empty on pre-launch). Script Arguments follow from `$args[5]`; every script here reads them all through the same `param` block. Environment variables `TRAYTRIGGER_PHASE`, `TRAYTRIGGER_GAME_NAME`, `TRAYTRIGGER_GAME_ID`, `TRAYTRIGGER_GAME_EXE`, and after exit `TRAYTRIGGER_PLAYTIME_MINUTES` (not set when running as Administrator). A line printed as `TT: ...` is shown to the player on the game's Played row and in the launch popup; up to five per run, the last one explaining a failure. A step-by-step guide is in [HOW-TO-WRITE-A-SCRIPT.md](HOW-TO-WRITE-A-SCRIPT.md); full details on the wiki: [Pre-Launch and Post-Exit Scripts](https://github.com/stephenh678/TrayTrigger/wiki/Pre-Launch-and-Post-Exit-Scripts) and [Writing your own script](https://github.com/stephenh678/TrayTrigger/wiki/Writing-your-own-script).
 
 ## License
 
