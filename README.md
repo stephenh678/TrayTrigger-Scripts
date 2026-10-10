@@ -50,7 +50,7 @@ Once it's in your folder the script is yours: TrayTrigger never changes a file i
 
 ## Sharing a script
 
-Post it in [Show and tell](https://github.com/stephenh678/TrayTrigger/discussions/7) first if you want feedback, or open a pull request here directly. [CONTRIBUTING.md](CONTRIBUTING.md) has the folder layout, the `script.json` fields, and the review checklist. The short version:
+Post it in [TrayTrigger's Show and tell](https://github.com/stephenh678/TrayTrigger/discussions/7) first if you want feedback, or open a pull request here directly. [CONTRIBUTING.md](CONTRIBUTING.md) has the folder layout, the `script.json` fields, and the review checklist. The short version:
 
 - PowerShell only, one folder per script under `scripts/`, with a `script.json` next to it.
 - Only the documented arguments and Script Arguments. No downloads, no network calls, no `Invoke-Expression`, no module installs.

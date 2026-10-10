@@ -198,4 +198,4 @@ When it works for you, share it here:
 3. Run `tools/Build-Catalog.ps1 -Check` if you have PowerShell handy. The pull request runs it too.
 4. Open a pull request and tick the review checklist in CONTRIBUTING.md, saying what you saw when you tested both phases.
 
-Want feedback first? Post it in [Show and tell](https://github.com/stephenh678/TrayTrigger/discussions/7).
+Want feedback first? Post it in [TrayTrigger's Show and tell](https://github.com/stephenh678/TrayTrigger/discussions/7).
