@@ -1,0 +1,33 @@
+name: Problem with a script
+description: A script here didn't work, or didn't do what its header says
+labels: ["script-bug"]
+body:
+  - type: input
+    id: script
+    attributes:
+      label: Script
+      description: The folder name under scripts/ and its version
+      placeholder: close-background-apps 3.2
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: TrayTrigger version
+      description: Settings > About
+      placeholder: v1.6.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect instead? Paste the script's TT: lines from the game's row in Activity & History, and the Script Arguments you used.
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: If the script did something its description doesn't say, please don't post it here. Report it privately through the security advisory link on the issue chooser.

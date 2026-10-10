@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Share a script
+    url: https://github.com/stephenh678/TrayTrigger-Scripts/blob/main/CONTRIBUTING.md
+    about: Open a pull request with your script. CONTRIBUTING.md has the folder layout and the review checklist.
+  - name: Ask a question
+    url: https://github.com/stephenh678/TrayTrigger/discussions
+    about: Help with TrayTrigger itself, or writing a script, goes in TrayTrigger's Discussions.
+  - name: Report an unsafe script
+    url: https://github.com/stephenh678/TrayTrigger-Scripts/security/advisories/new
+    about: A script that does something its description doesn't say. Please report it privately.

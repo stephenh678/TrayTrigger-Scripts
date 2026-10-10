@@ -76,7 +76,7 @@ Open a PR that bumps `version` in `script.json` and in the script's header, and 
 
 ## Reporting a problem with a script
 
-Open an issue here naming the script. If it's a security problem (a script does something its description doesn't say), use [TrayTrigger's private reporting](https://github.com/stephenh678/TrayTrigger/security/advisories/new) instead of a public issue.
+Open an issue here naming the script. If it's a security problem (a script does something its description doesn't say), follow [SECURITY.md](SECURITY.md) and report it privately instead of in a public issue.
 
 ## License
 

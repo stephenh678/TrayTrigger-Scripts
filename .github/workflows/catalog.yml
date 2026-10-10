@@ -17,14 +17,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate manifests and generated files
         shell: pwsh
         run: ./tools/Build-Catalog.ps1 -Check
@@ -32,8 +32,10 @@ jobs:
   build:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Regenerate catalog.json and README table
         shell: pwsh
         run: ./tools/Build-Catalog.ps1

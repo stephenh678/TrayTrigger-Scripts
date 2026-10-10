@@ -1,0 +1,29 @@
+name: Script request
+description: Something you'd like done before or after a game that TrayTrigger doesn't do
+labels: ["script-request"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What should happen, and when?
+      description: Before the game starts, after it exits, or both. What should it do for you, and what should it put back?
+      placeholder: Switch my monitor to 144 Hz for this game, and back to 60 Hz after.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tools
+    attributes:
+      label: Which apps or settings are involved?
+      description: Names and versions, if you know them.
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: TrayTrigger version
+      description: Settings > About
+      placeholder: v1.6.1
+    validations:
+      required: false
